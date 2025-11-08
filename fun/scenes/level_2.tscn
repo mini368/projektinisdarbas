@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5b4ixhjl2j3e"]
+[gd_scene load_steps=7 format=3 uid="uid://c5b4ixhjl2j3e"]
 
 [ext_resource type="Texture2D" uid="uid://cdqlu73ksb4gc" path="res://assets/sprites/world_tileset.png" id="1_jm1iu"]
 [ext_resource type="PackedScene" uid="uid://dqcwe5oax6t7p" path="res://scenes/player.tscn" id="2_pbc48"]
+[ext_resource type="PackedScene" uid="uid://f8s63vk8ron" path="res://scenes/killzone.tscn" id="3_pbc48"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eqxsl"]
 texture = ExtResource("1_jm1iu")
@@ -169,6 +170,8 @@ texture = ExtResource("1_jm1iu")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_eqxsl")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_eqxsl"]
+
 [node name="level 2" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -190,3 +193,9 @@ limit_right = 320
 limit_bottom = 80
 limit_smoothed = true
 position_smoothing_enabled = true
+
+[node name="Killzone" parent="." instance=ExtResource("3_pbc48")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(0, 80)
+shape = SubResource("WorldBoundaryShape2D_eqxsl")
