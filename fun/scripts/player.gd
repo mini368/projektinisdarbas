@@ -3,8 +3,7 @@ extends CharacterBody2D
 
 const SPEED = 80
 const JUMP_VELOCITY = -300
-var t = 1
-var hasjumped = false
+var hasjumped = 0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
