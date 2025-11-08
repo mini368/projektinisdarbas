@@ -247,7 +247,7 @@ layer_1/tile_data = PackedInt32Array(65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 6553
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(0, -6)
+position = Vector2(0, -7)
 zoom = Vector2(4, 4)
 limit_left = -145
 limit_top = -125
@@ -287,4 +287,8 @@ shape = SubResource("WorldBoundaryShape2D_p57ef")
 [node name="Slime" parent="." instance=ExtResource("6_p57ef")]
 position = Vector2(-88, 32)
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="body_entered" from="Coin" to="." method="_on_coin_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
