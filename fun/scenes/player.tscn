@@ -207,3 +207,5 @@ frame_progress = 0.8128043
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_fjrip")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

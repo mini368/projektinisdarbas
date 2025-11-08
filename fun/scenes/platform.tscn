@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://go8g2ugan2o0"]
+[gd_scene load_steps=4 format=3 uid="uid://go8g2ugan2o0"]
 
 [ext_resource type="Texture2D" uid="uid://qedhbmjrt78r" path="res://assets/sprites/platforms.png" id="1_ba0x2"]
+[ext_resource type="Script" uid="uid://e51ta21o026y" path="res://scripts/platform.gd" id="1_nlgqw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nlgqw"]
 size = Vector2(32, 8)
 
 [node name="Platform" type="AnimatableBody2D"]
+script = ExtResource("1_nlgqw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ba0x2")
