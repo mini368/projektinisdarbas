@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5b4ixhjl2j3e"]
+[gd_scene load_steps=11 format=3 uid="uid://c5b4ixhjl2j3e"]
 
 [ext_resource type="Texture2D" uid="uid://cdqlu73ksb4gc" path="res://assets/sprites/world_tileset.png" id="1_jm1iu"]
+[ext_resource type="Script" uid="uid://dmqogoh5wnk15" path="res://scripts/game_manager.gd" id="1_wo48x"]
 [ext_resource type="PackedScene" uid="uid://dqcwe5oax6t7p" path="res://scenes/player.tscn" id="2_pbc48"]
 [ext_resource type="PackedScene" uid="uid://f8s63vk8ron" path="res://scenes/killzone.tscn" id="3_pbc48"]
 [ext_resource type="FontFile" uid="uid://c0hsgfr16f88y" path="res://assets/fonts/PixelOperator8.ttf" id="4_eqxsl"]
@@ -180,6 +181,21 @@ distance = -11.0
 
 [node name="Tutorial" type="Node2D"]
 
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_wo48x")
+
+[node name="Score_Label" type="Label" parent="GameManager"]
+offset_left = 770.0
+offset_top = -125.999985
+offset_right = 840.7674
+offset_bottom = -110.583015
+scale = Vector2(1.3989499, 1.491863)
+theme_override_fonts/font = ExtResource("4_eqxsl")
+theme_override_font_sizes/font_size = 8
+text = "0 coins"
+autowrap_mode = 2
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_b4j7a")
 format = 2
@@ -199,6 +215,9 @@ limit_right = 976
 limit_bottom = 80
 limit_smoothed = true
 position_smoothing_enabled = true
+
+[node name="Coin" parent="." instance=ExtResource("5_b4j7a")]
+position = Vector2(392, -7)
 
 [node name="Killzone" parent="." instance=ExtResource("3_pbc48")]
 position = Vector2(1, 0)
@@ -235,10 +254,6 @@ theme_override_font_sizes/font_size = 8
 text = "a d
 to move"
 horizontal_alignment = 1
-
-[node name="Coin2" parent="." instance=ExtResource("5_b4j7a")]
-position = Vector2(392, -8)
-script = null
 
 [node name="Label3" type="Label" parent="."]
 offset_left = 369.0
