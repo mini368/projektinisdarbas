@@ -4,7 +4,7 @@ extends Area2D
 @onready var game_manager: Node = %GameManager
 
 func _on_body_entered(body: Node2D) -> void:
-	Engine.time_scale = 0.25
+	Engine.time_scale = 0.4
 	body.velocity.y = -300
 	body.get_node("CollisionShape2D").queue_free()
 	timer.start()
