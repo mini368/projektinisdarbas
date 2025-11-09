@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("left", "right")
 	if game_manager.inputs == 1:
 		# Handle jump.
-		if Input.is_action_just_pressed("jump") and hasjumped < 2: 
+		if Input.is_action_just_pressed("jump") and hasjumped < 1: 
 			velocity.y = JUMP_VELOCITY
 			hasjumped += 1
 		
@@ -56,6 +56,7 @@ func _physics_process(delta: float) -> void:
 @onready var bazooka: Sprite2D = $Bazooka
 @onready var rocket = load("res://scenes/rocket.tscn")
 @onready var reload: Timer = $Bazooka/Reload
+@onready var shape_cast: ShapeCast2D = $ShapeCast2D
 
 func shoot():
 	if reload.is_stopped():
@@ -65,7 +66,16 @@ func shoot():
 		b.transform = bazooka.transform
 		b.position = $".".position + Vector2(0, -5)
 
+var col = 0
+
 func _process(delta: float) -> void:
+	
+	if shape_cast.is_colliding() and col == 0:
+		velocity.x = shape_cast.get_collision_normal(0).x * 200
+		velocity.y = shape_cast.get_collision_normal(0).y * 500
+		col += 1
+	if not shape_cast.is_colliding():
+		col = 0
 	
 	bazooka.rotation = lerp_angle(bazooka.rotation, (bazooka.get_global_mouse_position() - bazooka.global_position).normalized().angle(), delta*10)
 	if get_local_mouse_position().x < 0:

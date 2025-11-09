@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b23xn8da6sso"
+path="res://.godot/imported/ROBLOX ＂Rocket Launcher Whoosh＂ Sound Effect - Game Tips.mp3-c3b2897fd00dc96c63c8aa4f13f8bbc9.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/ROBLOX ＂Rocket Launcher Whoosh＂ Sound Effect - Game Tips.mp3"
+dest_files=["res://.godot/imported/ROBLOX ＂Rocket Launcher Whoosh＂ Sound Effect - Game Tips.mp3-c3b2897fd00dc96c63c8aa4f13f8bbc9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

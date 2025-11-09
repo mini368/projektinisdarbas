@@ -192,6 +192,7 @@ unique_name_in_owner = true
 script = ExtResource("1_wo48x")
 
 [node name="Score_Label" type="Label" parent="CanvasLayer/GameManager"]
+visible = false
 offset_left = 7.000004
 offset_top = 4.999996
 offset_right = 307.2252
