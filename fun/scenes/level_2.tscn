@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://c5b4ixhjl2j3e"]
+[gd_scene load_steps=14 format=3 uid="uid://c5b4ixhjl2j3e"]
 
 [ext_resource type="Texture2D" uid="uid://cdqlu73ksb4gc" path="res://assets/sprites/world_tileset.png" id="1_jm1iu"]
+[ext_resource type="Script" uid="uid://btptnhc6geilf" path="res://scripts/level_2.gd" id="1_ne2mo"]
 [ext_resource type="Script" uid="uid://dmqogoh5wnk15" path="res://scripts/game_manager.gd" id="1_wo48x"]
 [ext_resource type="PackedScene" uid="uid://dqcwe5oax6t7p" path="res://scenes/player.tscn" id="2_pbc48"]
 [ext_resource type="PackedScene" uid="uid://f8s63vk8ron" path="res://scenes/killzone.tscn" id="3_pbc48"]
@@ -184,6 +185,7 @@ distance = -11.0
 size = Vector2(8, 11)
 
 [node name="Tutorial" type="Node2D"]
+script = ExtResource("1_ne2mo")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -214,7 +216,7 @@ layer_1/tile_data = PackedInt32Array(65535, 393216, 0, 0, 393216, 0, 65534, 3932
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -6)
-zoom = Vector2(4, 4)
+zoom = Vector2(3.5, 3.5)
 limit_left = -145
 limit_top = -224
 limit_right = 1472
@@ -222,11 +224,11 @@ limit_bottom = 80
 limit_smoothed = true
 position_smoothing_enabled = true
 
+[node name="Coin2" parent="." instance=ExtResource("5_b4j7a")]
+position = Vector2(1176, -135)
+
 [node name="Coin" parent="." instance=ExtResource("5_b4j7a")]
 position = Vector2(392, -7)
-
-[node name="Coin" parent="Coin" instance=ExtResource("5_b4j7a")]
-position = Vector2(784, -128)
 
 [node name="Killzone" parent="." instance=ExtResource("3_pbc48")]
 position = Vector2(1, 0)
@@ -345,3 +347,11 @@ position = Vector2(872, -80)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Slime/Killzone2"]
 position = Vector2(0, -5.5)
 shape = SubResource("RectangleShape2D_ne2mo")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="ready" from="CanvasLayer/GameManager" to="CanvasLayer/GameManager" method="_on_ready"]
+[connection signal="body_entered" from="Coin2" to="." method="_on_coin_2_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

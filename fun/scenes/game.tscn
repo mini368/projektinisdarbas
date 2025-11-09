@@ -302,5 +302,6 @@ shape = SubResource("RectangleShape2D_0tnpc")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 
+[connection signal="ready" from="CanvasLayer/GameManager" to="CanvasLayer/GameManager" method="_on_ready"]
 [connection signal="body_entered" from="Coin" to="." method="_on_coin_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

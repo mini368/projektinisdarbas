@@ -1,6 +1,5 @@
 extends Node2D
 
-@onready var coin: Area2D = $Coin
 @onready var timer: Timer = $Timer
 
 func _on_coin_body_entered(_body: Node2D) -> void:
