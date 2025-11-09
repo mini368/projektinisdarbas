@@ -9,6 +9,7 @@ var direction = 1
 @onready var ray_cast_down_r: RayCast2D = $RayCastDownR
 @onready var ray_cast_down_l: RayCast2D = $RayCastDownL
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var shape_cast: ShapeCast2D = $ShapeCast2D
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -25,3 +26,6 @@ func _process(delta: float) -> void:
 		direction = 1
 		animated_sprite.flip_h = false
 	position.x += direction * SPEED * delta
+	
+	if shape_cast.is_colliding():
+		queue_free()

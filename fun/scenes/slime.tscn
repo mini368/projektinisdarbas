@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwcfcrmdl8fq2"]
+[gd_scene load_steps=9 format=3 uid="uid://cwcfcrmdl8fq2"]
 
 [ext_resource type="Script" uid="uid://ma5bicd6lmh4" path="res://scripts/slime.gd" id="1_n6pvg"]
 [ext_resource type="Texture2D" uid="uid://ct54js0onsnk1" path="res://assets/sprites/slime_green.png" id="1_p2gj0"]
@@ -39,6 +39,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_p2gj0"]
+
 [node name="Slime" type="Node2D"]
 script = ExtResource("1_n6pvg")
 
@@ -63,3 +65,11 @@ target_position = Vector2(0, 9)
 [node name="RayCastDownL" type="RayCast2D" parent="."]
 position = Vector2(-9, -5)
 target_position = Vector2(0, 9)
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_p2gj0")
+target_position = Vector2(0, 0)
+max_results = 30
+collision_mask = 4
+collide_with_areas = true
