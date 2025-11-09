@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b7t3v683i8og3"]
+[gd_scene load_steps=16 format=3 uid="uid://b7t3v683i8og3"]
 
 [ext_resource type="PackedScene" uid="uid://dqcwe5oax6t7p" path="res://scenes/player.tscn" id="1_70nk6"]
 [ext_resource type="Script" uid="uid://dmqogoh5wnk15" path="res://scripts/game_manager.gd" id="1_wae8j"]
@@ -215,6 +215,9 @@ _data = {
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vcx5n"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wae8j"]
+size = Vector2(8, 11)
+
 [node name="Level_3" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -287,4 +290,10 @@ position = Vector2(32, 0)
 shape = SubResource("WorldBoundaryShape2D_vcx5n")
 
 [node name="Slime" parent="." instance=ExtResource("6_p6vls")]
-position = Vector2(144, -34)
+position = Vector2(144, -33)
+
+[node name="Killzone2" parent="Slime" instance=ExtResource("5_p6vls")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slime/Killzone2"]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_wae8j")
