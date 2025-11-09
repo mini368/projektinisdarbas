@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 				if is_on_floor():
 					velocity.x += direction * SPEED * delta * 5
 				elif not is_on_floor():
-					velocity.x += direction * SPEED * delta * 5
+					velocity.x += direction * SPEED * delta * 3
 		else:
 			if is_on_floor():
 				velocity.x = move_toward(velocity.x, 0, float(SPEED)/15)
@@ -51,28 +51,30 @@ func _physics_process(delta: float) -> void:
 	else:
 		animated_sprite.play ("jump")
 	
-	
 	move_and_slide()
 
 @onready var bazooka: Sprite2D = $Bazooka
 @onready var rocket = load("res://scenes/rocket.tscn")
+@onready var reload: Timer = $Bazooka/Reload
 
 func shoot():
-	var b = rocket.instantiate()
-	owner.add_child(b)
-	b.transform = bazooka.transform
-	b.position = $".".position + Vector2(0, -5)
+	if reload.is_stopped():
+		game_manager.removepoint()
+		var b = rocket.instantiate()
+		owner.add_child(b)
+		b.transform = bazooka.transform
+		b.position = $".".position + Vector2(0, -5)
 
 func _process(delta: float) -> void:
 	
 	bazooka.rotation = lerp_angle(bazooka.rotation, (bazooka.get_global_mouse_position() - bazooka.global_position).normalized().angle(), delta*10)
-	if get_global_mouse_position().x < 0:
+	if get_local_mouse_position().x < 0:
 		bazooka.flip_v = true
 	else:
 		bazooka.flip_v = false
 	
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and game_manager.inputs == 1:
 		if game_manager.shots > 0:
-			game_manager.removepoint()
 			shoot()
-	
+			if reload.is_stopped():
+				reload.start()

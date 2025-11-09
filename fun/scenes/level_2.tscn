@@ -181,19 +181,21 @@ distance = -11.0
 
 [node name="Tutorial" type="Node2D"]
 
-[node name="GameManager" type="Node" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameManager" type="Node" parent="CanvasLayer"]
 unique_name_in_owner = true
 script = ExtResource("1_wo48x")
 
-[node name="Score_Label" type="Label" parent="GameManager"]
-offset_left = 770.0
-offset_top = -125.999985
-offset_right = 840.7674
-offset_bottom = -110.583015
+[node name="Score_Label" type="Label" parent="CanvasLayer/GameManager"]
+offset_left = 7.000004
+offset_top = 4.999996
+offset_right = 307.2252
+offset_bottom = 72.0
 scale = Vector2(1.3989499, 1.491863)
 theme_override_fonts/font = ExtResource("4_eqxsl")
-theme_override_font_sizes/font_size = 8
-text = "0 coins"
+theme_override_font_sizes/font_size = 32
+text = "3 shots left."
 autowrap_mode = 2
 
 [node name="TileMap" type="TileMap" parent="."]
