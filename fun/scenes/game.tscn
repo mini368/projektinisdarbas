@@ -236,7 +236,7 @@ offset_bottom = -22.58304
 scale = Vector2(1.3989499, 1.491863)
 theme_override_fonts/font = ExtResource("7_u5sy4")
 theme_override_font_sizes/font_size = 8
-text = "0 coins"
+text = "3 shots left."
 autowrap_mode = 2
 
 [node name="TileMap" type="TileMap" parent="."]

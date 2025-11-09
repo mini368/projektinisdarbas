@@ -53,3 +53,26 @@ func _physics_process(delta: float) -> void:
 	
 	
 	move_and_slide()
+
+@onready var bazooka: Sprite2D = $Bazooka
+@onready var rocket = load("res://scenes/rocket.tscn")
+
+func shoot():
+	var b = rocket.instantiate()
+	owner.add_child(b)
+	b.transform = bazooka.transform
+	b.position = $".".position + Vector2(0, -5)
+
+func _process(delta: float) -> void:
+	
+	bazooka.rotation = lerp_angle(bazooka.rotation, (bazooka.get_global_mouse_position() - bazooka.global_position).normalized().angle(), delta*10)
+	if get_global_mouse_position().x < 0:
+		bazooka.flip_v = true
+	else:
+		bazooka.flip_v = false
+	
+	if Input.is_action_just_pressed("shoot"):
+		if game_manager.shots > 0:
+			game_manager.removepoint()
+			shoot()
+	
