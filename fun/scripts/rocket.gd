@@ -28,6 +28,10 @@ func _on_body_entered(_body: Node2D) -> void:
 	expduration.start()
 	entered = true
 
+func _on_area_entered(_area: Area2D) -> void:
+	expduration.start()
+	entered = true
+
 func _on_timer_timeout() -> void:
 	queue_free()
 

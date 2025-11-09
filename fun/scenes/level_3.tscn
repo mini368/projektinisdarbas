@@ -227,7 +227,6 @@ unique_name_in_owner = true
 script = ExtResource("1_wae8j")
 
 [node name="Score_Label" type="Label" parent="CanvasLayer/GameManager"]
-visible = false
 offset_left = 7.000004
 offset_top = 4.999996
 offset_right = 305.79553
@@ -294,6 +293,7 @@ shape = SubResource("WorldBoundaryShape2D_vcx5n")
 position = Vector2(144, -33)
 
 [node name="Killzone2" parent="Slime" instance=ExtResource("5_p6vls")]
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Slime/Killzone2"]
 position = Vector2(0, -5.5)
