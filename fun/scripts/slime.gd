@@ -10,6 +10,7 @@ var direction = 1
 @onready var ray_cast_down_l: RayCast2D = $RayCastDownL
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var shape_cast: ShapeCast2D = $ShapeCast2D
+@onready var game_manager: Node = %GameManager
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -28,4 +29,5 @@ func _process(delta: float) -> void:
 	position.x += direction * SPEED * delta
 	
 	if shape_cast.is_colliding():
-		queue_free()
+		if game_manager.inputs == 1:
+			queue_free()

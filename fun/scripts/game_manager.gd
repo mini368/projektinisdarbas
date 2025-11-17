@@ -1,6 +1,5 @@
 extends Node
 
-
 var inputs = 1
 var shots = 300
 @onready var score_label: Label = $Score_Label
