@@ -1,6 +1,5 @@
 extends AnimatableBody2D
 
-@onready var game_manager: Node = %GameManager
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var shape_cast: ShapeCast2D = $ShapeCast2D
 var t = 1

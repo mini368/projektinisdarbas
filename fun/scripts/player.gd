@@ -6,7 +6,7 @@ const JUMP_VELOCITY = -300
 var hasjumped = 0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var game_manager: Node = %GameManager
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfkae2qeiww05"]
+
+[ext_resource type="Script" uid="uid://dmqogoh5wnk15" path="res://scripts/game_manager.gd" id="1_hwd4i"]
+[ext_resource type="Texture2D" uid="uid://cwt3fpajbfxeh" path="res://assets/sprites/rocket.png" id="3_oo155"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_hwd4i")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+offset_right = 353.0
+offset_bottom = 108.0
+
+[node name="Score_Label" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="first" type="TextureRect" parent="CanvasLayer/MarginContainer/Score_Label"]
+layout_mode = 2
+texture = ExtResource("3_oo155")
+expand_mode = 3
+
+[node name="second" type="TextureRect" parent="CanvasLayer/MarginContainer/Score_Label"]
+layout_mode = 2
+texture = ExtResource("3_oo155")
+expand_mode = 3
+
+[node name="third" type="TextureRect" parent="CanvasLayer/MarginContainer/Score_Label"]
+layout_mode = 2
+texture = ExtResource("3_oo155")
+expand_mode = 3
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
