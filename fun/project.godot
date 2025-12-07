@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 Music="*res://scenes/Music.tscn"
 game_manager="*res://scenes/game_manager.tscn"
 
+[global_group]
+
+Player=""
+
 [input]
 
 jump={

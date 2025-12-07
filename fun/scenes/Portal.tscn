@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://b1o883yjbt2gq"]
+
+[ext_resource type="Texture2D" uid="uid://v8phett73nxm" path="res://assets/sprites/Dimensional_Portal.png" id="1_fw72y"]
+[ext_resource type="Script" uid="uid://dxqglm3go6i3f" path="res://scripts/portal.gd" id="1_k0w37"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0w37"]
+atlas = ExtResource("1_fw72y")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bfae"]
+atlas = ExtResource("1_fw72y")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqy53"]
+atlas = ExtResource("1_fw72y")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7lbi"]
+atlas = ExtResource("1_fw72y")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11uge"]
+atlas = ExtResource("1_fw72y")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plh3y"]
+atlas = ExtResource("1_fw72y")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2mlo7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0w37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bfae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqy53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7lbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11uge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plh3y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fw72y"]
+size = Vector2(10, 21)
+
+[node name="Portal" type="Area2D"]
+script = ExtResource("1_k0w37")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2mlo7")
+autoplay = "default"
+frame_progress = 0.15321825
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_fw72y")
+
+[node name="Destination_point" type="Marker2D" parent="."]
+position = Vector2(-14, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
