@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1o883yjbt2gq"]
+[gd_scene load_steps=12 format=3 uid="uid://b1o883yjbt2gq"]
 
 [ext_resource type="Texture2D" uid="uid://v8phett73nxm" path="res://assets/sprites/Dimensional_Portal.png" id="1_fw72y"]
 [ext_resource type="Script" uid="uid://dxqglm3go6i3f" path="res://scripts/portal.gd" id="1_k0w37"]
@@ -53,22 +53,25 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fw72y"]
-size = Vector2(10, 21)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k0w37"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k0w37"]
+radius = 1.0
 
 [node name="Portal" type="Area2D"]
+collision_layer = 2
 script = ExtResource("1_k0w37")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_2mlo7")
 autoplay = "default"
-frame_progress = 0.15321825
+frame_progress = 0.9427736
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+shape = SubResource("CapsuleShape2D_k0w37")
+target_position = Vector2(0, 0)
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -0.5)
-shape = SubResource("RectangleShape2D_fw72y")
-
-[node name="Destination_point" type="Marker2D" parent="."]
-position = Vector2(-14, 0)
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+shape = SubResource("CircleShape2D_k0w37")

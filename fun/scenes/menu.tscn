@@ -1,0 +1,146 @@
+[gd_scene load_steps=10 format=3 uid="uid://c82unlodytmhf"]
+
+[ext_resource type="Script" uid="uid://conswlmwww6fv" path="res://scripts/menu.gd" id="1_mhnvy"]
+[ext_resource type="FontFile" uid="uid://br4i1ddpif682" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_yqeox"]
+[ext_resource type="Texture2D" uid="uid://i6mhwwflyuuk" path="res://assets/sprites/28c7610e35d93ccf4d34b54924719ee66115e975da39a3ee5e6b4b0d3255bfef95601890afd80709da39a3ee5e6b4b0d3255bfef95601890afd80709b96c7c0d34a68bc3f27b41e7a70d6dd1.png" id="2_con2f"]
+[ext_resource type="Texture2D" uid="uid://c33cqfgo2owiu" path="res://assets/sprites/dazfrbhdbfzdfb.PNG" id="2_vjb58"]
+[ext_resource type="FontFile" uid="uid://c0hsgfr16f88y" path="res://assets/fonts/PixelOperator8.ttf" id="5_4ytvr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_con2f"]
+texture = ExtResource("2_vjb58")
+modulate_color = Color(0.8646751, 0.86467516, 0.8646751, 1)
+
+[sub_resource type="Animation" id="Animation_g3eks"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Savedata:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(396, 240)]
+}
+
+[sub_resource type="Animation" id="Animation_4ytvr"]
+resource_name = "nosave"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Savedata:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(396, 240), Vector2(426, 240), Vector2(366, 240), Vector2(426, 240), Vector2(366, 240), Vector2(396, 240)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v86rl"]
+_data = {
+&"RESET": SubResource("Animation_g3eks"),
+&"nosave": SubResource("Animation_4ytvr")
+}
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mhnvy")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_con2f")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -349.0
+offset_top = -189.0
+offset_bottom = -142.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("2_con2f")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -196.0
+offset_top = -361.0
+offset_right = 196.0
+offset_bottom = -119.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 8
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 32
+text = "New Game"
+
+[node name="Continue" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 32
+text = "Continue"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 32
+text = "Leave"
+
+[node name="Savedata" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -84.0
+offset_right = 180.00061
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.75617003, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.27058825, 0.27058825, 0.27058825, 0.27058825)
+theme_override_fonts/font = ExtResource("5_4ytvr")
+theme_override_font_sizes/font_size = 24
+text = "No save data found."
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_v86rl")
+}
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

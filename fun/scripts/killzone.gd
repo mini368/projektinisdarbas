@@ -10,7 +10,4 @@ func _on_body_entered(body: Node2D) -> void:
 	game_manager.deadInputs()
 
 func _on_timer_timeout() -> void:
-	Engine.time_scale = 1
-	get_tree().reload_current_scene()
-	game_manager.inputs = 1
-	game_manager.resetpoint()
+	game_manager.deathwoosh()

@@ -31,20 +31,23 @@ func _physics_process(delta: float) -> void:
 		elif direction == -1:
 			animated_sprite.flip_h = true
 		
-		if direction:
+		if direction: #speed when pressing a or d
 			if velocity.x >= -1 * SPEED and direction == -1 or velocity.x <= SPEED and direction == 1:
 				if is_on_floor():
 					velocity.x += direction * SPEED * delta * 5
 				elif not is_on_floor():
 					velocity.x += direction * SPEED * delta * 3
-		else:
+		else: #speed when not pressing a or d
 			if is_on_floor():
 				velocity.x = move_toward(velocity.x, 0, float(SPEED)/15)
 			elif not is_on_floor():
 				velocity.x = move_toward(velocity.x, 0, float(SPEED)/100)
 	
+	elif is_on_floor(): #when inputs disallowed and moving - slow down (used on portals)
+		velocity.x = move_toward(velocity.x, 0, float(SPEED)/15)
+	
 	if is_on_floor():
-		if direction == 0:
+		if direction == 0 or game_manager.inputs == -1:
 			animated_sprite.play("idle")
 		else:
 			animated_sprite.play("run")
@@ -66,16 +69,16 @@ func shoot():
 		b.transform = bazooka.transform
 		b.position = $".".position + Vector2(0, -5)
 
-var col = 0
+var collision = false
 
 func _process(delta: float) -> void:
 	
-	if shape_cast.is_colliding() and col == 0:
+	if shape_cast.is_colliding() and not collision:
 		velocity.x = shape_cast.get_collision_normal(0).x * 200
 		velocity.y = shape_cast.get_collision_normal(0).y * 500
-		col += 1
+		collision = true
 	if not shape_cast.is_colliding():
-		col = 0
+		collision = false
 	
 	bazooka.rotation = lerp_angle(bazooka.rotation, (bazooka.get_global_mouse_position() - bazooka.global_position).normalized().angle(), delta*10)
 	if get_local_mouse_position().x < 0:

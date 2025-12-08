@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://b7t3v683i8og3"]
+[gd_scene load_steps=16 format=3 uid="uid://b7t3v683i8og3"]
 
 [ext_resource type="PackedScene" uid="uid://dqcwe5oax6t7p" path="res://scenes/player.tscn" id="1_70nk6"]
-[ext_resource type="Script" uid="uid://c47wlv84yxxie" path="res://scripts/level_3.gd" id="1_ha73p"]
 [ext_resource type="FontFile" uid="uid://c0hsgfr16f88y" path="res://assets/fonts/PixelOperator8.ttf" id="2_ha73p"]
 [ext_resource type="Texture2D" uid="uid://cdqlu73ksb4gc" path="res://assets/sprites/world_tileset.png" id="2_uwxec"]
 [ext_resource type="PackedScene" uid="uid://b20j5ere3dgd5" path="res://scenes/coin.tscn" id="3_1pn4d"]
@@ -199,13 +198,13 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-81, -190), Vector2(17, -190)]
+"values": [Vector2(-70, -204), Vector2(19, -204)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ha73p"]
@@ -220,7 +219,6 @@ _data = {
 size = Vector2(8, 11)
 
 [node name="Level_3" type="Node2D"]
-script = ExtResource("1_ha73p")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(24, -1)
@@ -236,7 +234,7 @@ layer_1/tile_data = PackedInt32Array(-589819, 458752, 3, -720886, 458752, 3, 655
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(32, -16)
 zoom = Vector2(2.5, 2.5)
-limit_left = -250
+limit_left = -345
 limit_top = -295
 limit_right = 530
 limit_bottom = 300
@@ -254,19 +252,18 @@ autoplay = "move"
 [node name="Coins" type="Node" parent="."]
 
 [node name="Coin" parent="Coins" instance=ExtResource("3_1pn4d")]
-position = Vector2(141, 182)
+position = Vector2(144, 200)
 
 [node name="Coin2" parent="Coins" instance=ExtResource("3_1pn4d")]
 position = Vector2(-145, 135)
 
 [node name="Coin5" parent="Coins" instance=ExtResource("3_1pn4d")]
-position = Vector2(-68, -249)
+position = Vector2(-272, -8)
 
 [node name="Killzone" parent="." instance=ExtResource("5_p6vls")]
-position = Vector2(18, 287)
+position = Vector2(18, 301)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
-position = Vector2(32, 14)
 shape = SubResource("WorldBoundaryShape2D_vcx5n")
 
 [node name="Slime" parent="." instance=ExtResource("6_p6vls")]
@@ -290,17 +287,7 @@ text = "Maybe use a gun?"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
 [node name="Portal" parent="." instance=ExtResource("9_ha73p")]
-position = Vector2(-208, -49)
-
-[node name="Destination_point" parent="Portal" index="2"]
-position = Vector2(353, 137)
+position = Vector2(-70, -226)
 
 [connection signal="body_entered" from="Coins/Coin2" to="." method="_on_coin_2_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-
-[editable path="Portal"]
